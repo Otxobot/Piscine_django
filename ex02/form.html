@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <script src="popup.js" defer></script>
+</head>
+<body>
+    <h1>Contact Form</h1>
+    <form id="contactForm">
+        <label for="firstname">Firstname:
+            <input type="text" id="firstname" name="firstname" required>
+        </label><br><br>
+        
+        <label for="name">Name:
+            <input type="text" id="name" name="name" required>
+        </label><br><br>
+        
+        <label for="age">Age:
+            <input type="number" id="age" name="age" required>
+        </label><br><br>
+        
+        <label for="phone">Phone:
+            <input type="tel" id="phone" name="phone" required>
+        </label><br><br>
+        
+        <label for="email">Email:
+            <input type="email" id="email" name="email" required>
+        </label><br><br>
+        
+        <label for="student">
+            <input type="checkbox" id="student" name="student"> Student at 42?
+        </label><br><br>
+        
+        <label>Gender:</label><br>
+        <label for="gender_male">
+            <input type="radio" id="gender_male" name="gender_male" value="Male" required> Male
+        </label><br>
+        <label for="gender_female">
+            <input type="radio" id="gender_female" name="gender_female" value="Female" required> Female
+        </label><br>
+        <label for="gender_other">
+            <input type="radio" id="gender_other" name="gender_other" value="Other" required> Other
+        </label><br><br>
+        
+        <button type="button" onclick="displayFormContents()">Submit</button>
+    </form>
+</body>
+</html>
