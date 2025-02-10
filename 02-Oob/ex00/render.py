@@ -12,8 +12,6 @@ def replace_variables(filename: str):
         if hasattr(settings, match):
             template_text = re.sub(rf"\{{{match}\}}", getattr(settings, match), template_text)
 
-    print(matches)
-    print(template_text)
     return template_text
 
 def main():
