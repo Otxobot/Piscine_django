@@ -80,7 +80,26 @@ class Br(Elem):
     def __init__(self, content=None, attr={}):
         super().__init__(tag='br', attr=attr, content=content, tag_type='simple')
 
+def test1():
+    return Html([Head(), Body()])
+
+def test2():
+    return Html([Head([Meta(), ]), Title(Text('This is the title'))])
+
+def test3():
+    return P(Text('This text'))
+
+def test4():
+    return Img(attr={'src': 'path/to/image'})
+
 def main():
+    tests = [test1, test2, test3, test4]
+    for test in tests:
+        print("===============")
+        print(test())
+    print("===============")
+    print("Example html:")
+    print("===============")
     print( Html([ Head([Title(content=Text('"Hello ground!"'))]), Body([H1(content=Text('"Oh no, not again!"')), Img(attr={'src': 'http://i.imgur.com/pfp3T.jpg'})])]))
 
 if __name__ == '__main__':
