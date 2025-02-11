@@ -12,7 +12,13 @@ class Text(str):
         """
         Do you really need a comment to understand this method?..
         """
-        return super().__str__().replace('\n', '\n<br />\n')
+        content = super().__str__()
+        content = content.replace('&', '&amp;')
+        content = content.replace('<', '&lt;')
+        content = content.replace('>', '&gt;')
+        content = content.replace('"', '&quot;')
+        content = content.replace('\n', '\n<br />\n')
+        return content
 
 
 class Elem:
@@ -31,7 +37,16 @@ class Elem:
         """
         self.tag = tag
         self.attr = attr
-        self.content = content
+        self.content = []
+
+        if not (self.check_type(content) or content is None):
+            raise self.ValidationError
+        if type(content) == list:
+            self.content = content
+        elif content is not None:
+            self.content.append(content)
+        if (tag_type != 'double' and tag_type != 'simple'):
+            raise self.ValidationError
         self.tag_type = tag_type
 
     def __str__(self):
@@ -41,10 +56,12 @@ class Elem:
         Make sure it renders everything (tag, attributes, embedded
         elements...).
         """
+        attr = self.__make_attr()
+        result = "<{tag}{attr}".format(tag=self.tag, attr=attr)
         if self.tag_type == 'double':
-            result = f"<{self.tag}{self.__make_attr()}>{self.__make_content()}</{self.tag}>"
+            result += ">{content}</{tag}>".format(content=self.__make_content(), tag=self.tag)  
         elif self.tag_type == 'simple':
-            result = f"<{self.tag}{self.__make_attr()}/>"
+            result += " />"
         return result
 
     def __make_attr(self):
@@ -62,10 +79,14 @@ class Elem:
         """
 
         if len(self.content) == 0:
-            return ''
+            return ""
         result = '\n'
         for elem in self.content:
-            result += str(elem) + '\n'
+            if elem is not None and len(str(elem)) != 0:
+                    result += "{elem}\n".format(elem=elem)
+        result = "  ".join(line for line in result.splitlines(True))
+        if len(result.strip()) == 0:
+            return ''
         return result
 
     def add_content(self, content):
@@ -88,5 +109,8 @@ class Elem:
                                                 for elem in content])))
 
 
+def test():
+    
+
 if __name__ == '__main__':
-    [...]
+    test()
