@@ -12,13 +12,7 @@ class Text(str):
         """
         Do you really need a comment to understand this method?..
         """
-        content = super().__str__()
-        content = content.replace('&', '&amp;')
-        content = content.replace('<', '&lt;')
-        content = content.replace('>', '&gt;')
-        content = content.replace('"', '&quot;')
-        content = content.replace('\n', '\n<br />\n')
-        return content
+        return super().__str__().replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace('\n', '\n<br />\n')
 
 
 class Elem:
@@ -110,7 +104,13 @@ class Elem:
 
 
 def test():
-    
+    print(Elem(tag='html', content=[
+        Elem(tag='head', content=Elem(tag='title', content=Text('"Hello ground!"'))),
+        Elem(tag='body', content=[
+            Elem(tag='h1', content=Text('"Oh no, not again!"')),
+            Elem(tag='img', attr={'src': 'http://i.imgur.com/pfp3T.jpg'}, tag_type='simple')
+        ])
+    ]))
 
 if __name__ == '__main__':
     test()
