@@ -79,3 +79,9 @@ class Hr(Elem):
 class Br(Elem):
     def __init__(self, content=None, attr={}):
         super().__init__(tag='br', attr=attr, content=content, tag_type='simple')
+
+def main():
+    print( Html([Head([Title(content=Text('"Hello ground!"'))]), Body([H1(content=Text('"Oh no, not again!"'))], Img(attr={'src': 'http://i.imgur.com/pfp3T.jpg'}))]))
+
+if __name__ == '__main__':
+    main()
