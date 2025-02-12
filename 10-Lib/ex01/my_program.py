@@ -5,7 +5,16 @@ sys.path.append('./local_lib')
 
 from path import Path
 
-p = Path("/path/to/file")
-print(f"Path: {p}")
-print(f"Is this path a file? {p.is_file()}")
-print(f"Is this path a directory? {p.is_dir()}")
+def main():
+    try:
+        Path.makedirs('something')
+    except FileExistsError as e:
+        print(e)
+    Path.touch('something/something')
+    f = Path('something/something')
+    f.write_lines(['hello', 'world!'])
+    print(f.read_text())
+
+
+if __name__ == '__main__':
+    main()
