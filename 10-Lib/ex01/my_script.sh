@@ -12,8 +12,10 @@ if [ -d "$INSTALL_DIR" ]; then
 fi
 
 echo "Installing path.py development version..." | tee -a $LOG_FILE
+python3 -m venv myenv
+source myenv/bin/activate
 
-pip install git+https://github.com/jaraco/path.git --target="$INSTALL_DIR" >> $LOG_FILE 2>&1
+pip install git+https://github.com/jaraco/path.py@main --target="$INSTALL_DIR" >> $LOG_FILE 2>&1
 
 if [ $? -eq 0 ]; then
   echo "path.py installed successfully." | tee -a $LOG_FILE
