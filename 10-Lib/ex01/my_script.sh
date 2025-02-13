@@ -2,7 +2,7 @@
 
 pip --version
 
-INSTALL_DIR="./local_lib"
+INSTALL_DIR="local_lib"
 LOG_FILE="install_path.log"
 
 
@@ -12,8 +12,8 @@ if [ -d "$INSTALL_DIR" ]; then
 fi
 
 echo "Installing path.py development version..." | tee -a $LOG_FILE
-python3 -m venv myenv
-source myenv/bin/activate
+/usr/bin/python3 -m venv $INSTALL_DIR
+source $INSTALL_DIR/bin/activate
 
 pip install git+https://github.com/jaraco/path.py@main --target="$INSTALL_DIR" >> $LOG_FILE 2>&1
 
