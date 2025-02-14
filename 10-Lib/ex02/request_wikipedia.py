@@ -12,10 +12,10 @@ def format_filename(search_term):
 
 def search_wikipedia(term, language="en"):
     try:
-        # Wikipedia API endpoint
+        
         api_url = f"https://{language}.wikipedia.org/w/api.php"
 
-        # API parameters
+        
         params = {
             "action": "query",
             "format": "json",
